@@ -1,6 +1,7 @@
 package implementation;
 
 import definition.ContactList;
+import definition.Operational;
 import definition.Person;
 
 import java.util.Scanner;
@@ -8,10 +9,11 @@ import java.util.Scanner;
 public class Main {
         public static void main(String[] args) {
                 ContactList<Person> contact = new ContactList<>();
+                Operational obj = new Operational();
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Welcome to Ankit's Contact List App");
-                int k = sc.nextInt();
-                while (k != 5) {
+
+                do {
                         System.out.println("<----------x------x---------->");
                         System.out.println("Press 1 to add a new contact");
                         System.out.println("Press 2 to view all contacts");
@@ -22,20 +24,24 @@ public class Main {
                         String choice = sc.nextLine();
                         switch (choice) {
                                 case "1":
-
+                                        obj.addContact(contact);
                                         break;
                                 case "2":
+                                        obj.viewContact(contact);
                                         break;
                                 case "3":
+                                        obj.searchContact(sc.next(), contact);
                                         break;
                                 case "4":
+                                        obj.deleteContact(contact);
                                         break;
                                 case "5":
-
+                                        System.exit(0);
                                 default:
                                         System.out.println("Invalid choice!! Please select a valid choice.");
+                                        break;
                         }
-                }
+                } while (true);
 
         }
 }
