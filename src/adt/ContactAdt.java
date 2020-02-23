@@ -8,7 +8,7 @@ public interface ContactAdt<E> {
 
         void viewContact();
 
-        void searchContact(Person person);
+        int search(String item);
 
-        Person deleteContact(int index);
+        boolean deleteContact(int index);
 }

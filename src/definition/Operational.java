@@ -26,7 +26,8 @@ public class Operational {
                         System.out.println("Hey ! please enter valid command");
                 }
                 System.out.println("Would you want to add email Id :y/n");
-                String order1 = sc.next();
+                sc.nextLine();
+                String order1 = sc.nextLine();
                 String email = "";
                 if (order1.equals("y")) {
                         email = sc.nextLine();
@@ -39,7 +40,31 @@ public class Operational {
         }
 
         public void viewContact(ContactList<Person> link) {
-
+                ContactList<Person> cont = new ContactList<>();
+                cont = link.sort(link);
+                cont.print();
         }
+
+        public void searchContact(String name, ContactList lis) {
+                int c = lis.search(name);
+                if (c == 0) {
+                        System.out.println("NO RESULTS FOUND!");
+                } else if (c >= 1) {
+                        System.out.println(c + " " + "match found!");
+                        lis.printSearchitem(name);
+                }
+        }
+
+        public void deleteContact(ContactList list) {
+                String store = "";
+                System.out.println("Here are all your contacts:");
+                list.show();
+                System.out.println("Press the number against the contact to delete it:");
+                int ch = sc.nextInt();
+                store = list.getNode(ch - 1).getData().getFirstName() + list.getNode(ch - 1).getData().getLastName();
+                boolean c = list.deleteContact(ch - 1);
+                System.out.println(c == true ? store + "s" + "contact deleted from list!" : "");
+        }
+
 
 }
